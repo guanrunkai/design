@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
+    // "stylelint.vscode-stylelint",
+    // "kisstkondoros.vscode-codemetrics"
+  ],
+  "unwantedRecommendations": [
+    "hookyqr.beautify",
+    "ms-vscode.vscode-typescript-next",
+    "lonefy.vscode-JS-CSS-HTML-formatter"
+  ]
+}

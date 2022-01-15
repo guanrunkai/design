@@ -1,0 +1,17 @@
+.breadcrumbs {
+  height: 40px;
+  padding: 0 20px;
+  line-height: 40px;
+  span {
+    color: #333;
+    transition: color 0.3s;
+    &:hover {
+      color: @ms-text-color;
+    }
+  }
+  :global {
+    .ant-breadcrumb-separator {
+      margin: 0 4px;
+    }
+  }
+}

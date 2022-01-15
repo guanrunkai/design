@@ -1,0 +1,51 @@
+.ms_icon_button {
+  composes: flex-center from global;
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  svg {
+    width: 14px;
+    fill: @ms-primary-color;
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    background: @ms-primary-color;
+    svg {
+      fill: @ms-white;
+    }
+  }
+
+  &.border {
+    border: 1px solid @ms-primary-color;
+  }
+
+  /* stylelint-disable-next-line */
+  &.large {
+  }
+
+  &.active {
+    background: @ms-primary-color;
+    svg {
+      fill: @ms-white;
+    }
+  }
+
+  &.disabled,
+  &.disabled:hover {
+    cursor: not-allowed;
+    border-color: #888;
+    background-color: transparent;
+    svg {
+      fill: #888;
+    }
+  }
+
+  & + .ms_icon_button {
+    margin-left: 10px;
+  }
+}

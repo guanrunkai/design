@@ -1,0 +1,71 @@
+{
+  "private": true,
+  "name": "111",
+  "version": "{{projectVersion}}",
+  "description": "{{projectDescription}}",
+  "scripts": {
+    "cz": "git-cz",
+    "start": "umi dev",
+    "start:test": "cross-env API_ENV=test PORT=1050 umi dev",
+    "build": "umi build",
+    "lint:script": "eslint --fix \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "lint:style": "stylelint --fix \"src/**/*.css\" \"src/**/*.less\"",
+    "lint": "yarn lint:script && yarn lint:style",
+    "submit": "svn del dist/* && echo 打包构建中... && umi build && svn add dist/* && svn ci -m \"util:html: submit-compiling\" dist && echo 打包构建完毕",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.6.2",
+    "@moresec/hooks": "^0.4.0",
+    "@moresec/react-components": "^1.6.0",
+    "@moresec/utils": "^1.3.2",
+    "antd": "^4.16.6",
+    "classnames": "^2.2.6",
+    "dva": "^2.6.0-beta.20",
+    "isomorphic-fetch": "^2.2.1",
+    "js-cookie": "^3.0.1",
+    "md5": "^2.3.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-error-boundary": "^3.1.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@moresec/eslint-config-moresec": "^1.5.0",
+    "@moresec/stylelint-config-moresec": "git+ssh://git@git.moresec.cn:front-end/stylelint-config-moresec.git#1.0.0",
+    "@svgr/webpack": "^5.3.1",
+    "@types/classnames": "^2.2.10",
+    "@types/md5": "^2.2.1",
+    "@types/react": "^16.9.32",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
+    "@umijs/preset-react": "^1.8.14",
+    "babel-eslint": "^10.1.0",
+    "commitizen": "^4.2.3",
+    "cross-env": "^7.0.3",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "6.2.0",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.2.0",
+    "typescript": "^4.3.5",
+    "umi": "^3.5.2"
+  },
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  }
+}

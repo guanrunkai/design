@@ -1,0 +1,92 @@
+.headerMenu {
+  background-color: #243351 !important;
+  height: 100%;
+  min-width: 850px;
+  border-bottom: none;
+  line-height: 1 !important;
+
+  :global {
+    .ant-menu-sub.ant-menu-vertical {
+      min-width: 90px !important;
+    }
+
+    .ant-menu {
+      &-item,
+      &-submenu {
+        height: 100%;
+        box-sizing: border-box;
+        padding: 0 20px !important;
+        margin: 0 !important;
+        border-bottom: none !important;
+        top: 0 !important;
+
+        & span {
+          color: #808ca3;
+          margin-left: 0;
+        }
+      }
+
+      .ant-menu-sub.ant-menu-vertical {
+        min-width: 90px !important;
+      }
+    }
+
+    .ant-menu-item.ant-menu-item-active,
+    .ant-menu-item.ant-menu-item-selected,
+    .ant-menu-submenu.ant-menu-submenu-active,
+    .ant-menu-submenu.ant-menu-submenu-selected {
+      background-color: #335481 !important;
+
+      & span {
+        color: #fff;
+      }
+    }
+
+    .ant-menu-item > a:only-child {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ant-menu-title-content,
+    .ant-menu-submenu-title {
+      height: 100%;
+
+      & > a,
+      & > span {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .ant-menu-item .anticon,
+    .ant-menu-submenu-title .anticon {
+      margin-bottom: 7px;
+    }
+
+    .ant-menu-title-content::after {
+      display: none;
+    }
+  }
+}
+// 系统配置 下方隐藏栏样式
+.subMenu {
+  :global {
+    .ant-menu.ant-menu-sub.ant-menu-vertical {
+      text-align: center;
+      // min-width: 128px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .headerMenu {
+    max-width: 1800px;
+    min-width: 1050px;
+  }
+}

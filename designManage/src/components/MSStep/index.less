@@ -1,0 +1,73 @@
+.stepWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.step {
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+  &:not(:first-of-type) {
+    justify-content: flex-end;
+  }
+
+  .stepInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .stepIndex {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    background: #edeff1;
+    color: #989ba1;
+    font-size: 16px;
+    margin-bottom: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.28s;
+  }
+
+  &:not(:last-child) .stepIndex::after,
+  &:not(:first-child) .stepIndex::before {
+    content: "";
+    width: 500px;
+    height: 1px;
+    background: #edeff1;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+  }
+
+  &:not(:first-child) .stepIndex::before {
+    left: inherit;
+    right: 40px;
+  }
+  &:not(:first-child) .stepIndex {
+    justify-content: flex-end;
+  }
+
+  .stepTitle {
+    cursor: pointer;
+  }
+
+  &.active {
+    .stepIndex {
+      background: @ms-primary-color;
+      color: #fff;
+      &::before {
+        background: @ms-primary-color;
+      }
+    }
+  }
+
+  &.activeLine .stepIndex::after {
+    background: @ms-primary-color;
+  }
+}

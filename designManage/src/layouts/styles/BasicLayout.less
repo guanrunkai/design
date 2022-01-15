@@ -1,0 +1,31 @@
+.main_container_wrapper {
+  min-height: calc(100vh - 56px);
+  margin-top: 56px;
+}
+
+.main_container {
+  margin: 0;
+}
+
+.horizontal_layout {
+  min-height: 100vh;
+  background: #f0f2f5;
+  :global {
+    .ant-breadcrumb {
+      padding: 0;
+    }
+    .ant-menu-item {
+      min-width: 88px;
+      text-align: center;
+    }
+  }
+  .horizontal_content {
+    margin-top: 72px;
+    padding: 0 20px;
+    .horizontal_main {
+      min-height: 500px;
+      padding: 20px;
+      background-color: #fff;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "javascript.validate.enable": true,
+  "npm.packageManager": "yarn",
+  "eslint.packageManager": "yarn",
+  "eslint.alwaysShowStatus": true,
+  "eslint.run": "onSave",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.enable": true,
+  "prettier.printWidth": 100,
+  "prettier.trailingComma": "none",
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.endOfLine": "auto",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  // use stylelint
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
+}

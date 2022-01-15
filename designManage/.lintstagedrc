@@ -1,0 +1,5 @@
+{
+  "src/**/*.ts": "./node_modules/.bin/eslint --fix",
+  "src/**/*.tsx": "./node_modules/.bin/eslint --fix",
+  "src/**/*.less": "./node_modules/.bin/stylelint --fix"
+}

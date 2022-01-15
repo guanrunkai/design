@@ -1,0 +1,42 @@
+.login_wrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: @ms-blue;
+}
+
+.form_wrapper {
+  composes: flex-center from global;
+  width: 100%;
+  height: 100%;
+}
+
+.form {
+  width: 400px;
+  height: 380px;
+  padding: 60px 40px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.logo {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.code_wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 32px;
+  .code_input {
+    width: 160px;
+  }
+  .code {
+    width: 135px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.submit {
+  width: 100%;
+}

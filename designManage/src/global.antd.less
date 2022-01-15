@@ -1,0 +1,430 @@
+body {
+  // tag
+  .ant-tag {
+    height: 24px;
+    padding: 0 8px;
+    font-size: 14px;
+    line-height: 20px;
+    .ant-tag-close-icon {
+      margin-left: 4px;
+      font-size: 14px;
+    }
+    &.ms-tag-xl {
+      height: 32px;
+      padding: 0 16px;
+      line-height: 28px;
+    }
+    &.ms-tag-lg {
+      height: 24px;
+      padding: 0 8px;
+      line-height: 20px;
+    }
+    &.ms-tag-md {
+      height: 20px;
+      padding: 0 8px;
+      font-size: 12px;
+      line-height: 18px;
+      .ant-tag-close-icon {
+        font-size: 12px;
+      }
+    }
+    &.ms-tag-sm {
+      height: 18px;
+      padding: 0 4px;
+      font-size: 12px;
+      line-height: 16px;
+      .ant-tag-close-icon {
+        font-size: 10px;
+      }
+    }
+  }
+  // switch
+  .ant-switch {
+    line-height: 20px;
+    .ant-switch-handle {
+      width: 16px;
+      height: 16px;
+    }
+    &.ant-switch-checked .ant-switch-handle {
+      left: calc(100% - 16px - 2px);
+    }
+    .ant-switch-inner:not(:empty) {
+      width: 23px;
+      margin: 0 3px 0 18px;
+    }
+    &.ant-switch-checked .ant-switch-inner {
+      margin: 0 18px 0 3px;
+    }
+  }
+  // button
+  .ant-btn + .ant-btn,
+  button + button {
+    margin-left: 16px;
+  }
+  // 交互效果 - 根据项目自己改
+  .ant-btn-background-ghost.ant-btn-primary:hover:not([disabled]),
+  .ant-btn-background-ghost.ant-btn-primary:focus:not([disabled]) {
+    color: #fff;
+    background: #40a9ff !important;
+    border-color: #40a9ff;
+  }
+  .ant-btn-background-ghost.ant-btn-primary[disabled],
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:hover,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:focus,
+  .ant-btn-background-ghost.ant-btn-primary[disabled]:active {
+    color: rgba(24, 144, 255, 0.3);
+    background: #fff;
+    border-color: rgba(24, 144, 255, 0.3);
+  }
+  .ant-btn-primary[disabled],
+  .ant-btn-primary[disabled]:hover,
+  .ant-btn-primary[disabled]:focus,
+  .ant-btn-primary[disabled]:active {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(24, 144, 255, 0.3);
+    border-color: #c0deff;
+  }
+  .ant-btn:not(.ant-btn-primary)[disabled] {
+    background-color: transparent;
+  }
+
+  .ant-btn {
+    min-width: 88px;
+    padding: 0 16px;
+  }
+  .ant-btn > .anticon + span,
+  .ant-btn > span + .anticon {
+    margin-left: 4px;
+  }
+  .ant-btn-lg,
+  .ms-btn-xl {
+    min-width: 176px;
+    height: 40px;
+    font-size: 18px;
+  }
+  .ms-btn-lg {
+    min-width: 116px;
+    height: 36px;
+  }
+  .ms-btn-md {
+    min-width: 88px;
+    height: 32px;
+  }
+  .ms-btn-sm {
+    min-width: 80px;
+    height: 28px;
+    padding: 0 16px;
+  }
+  .ant-btn-sm,
+  .ms-btn-xs {
+    min-width: 56px;
+    height: 24px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  // icon 按钮
+  .ant-btn-icon-only {
+    vertical-align: bottom;
+    &.ant-btn {
+      width: 24px;
+      min-width: auto;
+      height: 24px;
+      padding: 0;
+      line-height: 16px;
+      & > * {
+        font-size: 12px;
+      }
+    }
+    &.ant-btn-lg,
+    &.ms-btn-xl {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      & > * {
+        font-size: 16px;
+      }
+    }
+    &.ms-btn-lg {
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      & > * {
+        font-size: 16px;
+      }
+    }
+    &.ms-btn-md {
+      width: 24px;
+      height: 24px;
+      line-height: 16px;
+      & > * {
+        font-size: 12px;
+      }
+    }
+    &.ms-btn-sm {
+      width: 20px;
+      height: 20px;
+      line-height: 12px;
+      & > * {
+        font-size: 12px;
+      }
+    }
+    &.ant-btn-sm,
+    &.ms-btn-xs {
+      width: 16px;
+      height: 16px;
+      line-height: 10px;
+      & > * {
+        font-size: 10px;
+      }
+    }
+  }
+  .ant-input-search .ant-input-search-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  // 步骤条
+  .ant-steps {
+    //
+  }
+
+  // alert
+  .ant-alert {
+    padding: 8px 12px;
+    line-height: 20px;
+    .ant-alert-icon {
+      font-size: 16px;
+    }
+  }
+  // .ant-modal-header
+  .ant-modal {
+    min-width: 540px !important;
+    .ant-modal-body {
+      padding: 24px 24px 0;
+      // form
+      .ant-form-vertical .ant-form-item-label {
+        padding-bottom: 12px;
+        line-height: 20px;
+      }
+    }
+    .ant-modal-footer {
+      display: flex;
+      flex-flow: row-reverse;
+      justify-content: center;
+      float: none;
+      padding: 8px 24px 32px;
+      text-align: center;
+      border-top: none;
+      button + button {
+        margin-right: 16px;
+        margin-left: 0;
+      }
+    }
+    // confirm
+    &.ant-modal-confirm {
+      .ant-modal-body {
+        padding: 32px 24px;
+      }
+      .ant-modal-confirm-body > .anticon {
+        margin-right: 4px;
+        color: #ff9000;
+        font-size: 20px;
+        & + .ant-modal-confirm-title + .ant-modal-confirm-content {
+          margin-left: 0;
+        }
+      }
+      .ant-modal-confirm-content {
+        margin-top: 12px;
+      }
+      .ant-modal-confirm-btns {
+        display: flex;
+        flex-flow: row-reverse;
+        justify-content: center;
+        float: none;
+        text-align: center;
+        button + button {
+          margin-right: 16px;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  // text_modal 没有表单、没有footer，只有提示文本
+  .text_modal {
+    .ant-modal-body {
+      padding: 24px 24px 32px;
+    }
+  }
+  // tabs
+  .ant-tabs {
+    line-height: 20px;
+    // tabs-top
+    &.ant-tabs-top {
+      padding: 20px;
+      > .ant-tabs-nav::before {
+        border-bottom: 1px solid #e4e6e9;
+      }
+      .ant-tabs-tab {
+        margin-right: 24px;
+        padding: 0 0 12px;
+      }
+      > .ant-tabs-nav {
+        margin-bottom: 0;
+      }
+      .ant-tabs-content-holder {
+        padding: 20px 0;
+        background-color: #fff;
+      }
+    }
+    &.ant-tabs-card {
+      padding: 0;
+      > .ant-tabs-nav .ant-tabs-tab {
+        padding: 10px 16px;
+        background: #fff;
+        border: 1px solid #e4e6e9;
+        &:not(:last-of-type) {
+          margin-right: -1px;
+        }
+      }
+      > .ant-tabs-nav .ant-tabs-tab-active {
+        background-color: @ms-primary-color;
+        .ant-tabs-tab-btn {
+          color: #fff;
+        }
+      }
+      .ant-tabs-content-holder {
+        padding: 20px;
+      }
+    }
+    &.card-border.ant-tabs-card {
+      > .ant-tabs-nav .ant-tabs-tab {
+        border: 1px solid #fff;
+        border-bottom-color: #e4e6e9;
+        &:not(:last-of-type) {
+          margin-right: 0;
+        }
+      }
+      > .ant-tabs-nav .ant-tabs-tab-active {
+        background-color: #fff;
+        border-color: #e4e6e9;
+        border-bottom-color: #fff;
+        .ant-tabs-tab-btn {
+          color: @ms-primary-color;
+        }
+      }
+    }
+  }
+  // tooltip
+  .ant-tooltip {
+    max-width: 300px;
+  }
+  // popconfirm
+  .ant-popconfirm {
+    width: 300px;
+    .ant-popover-content {
+      padding: 0;
+      box-shadow: 0 2px 8px 4px #e9eff3;
+    }
+    .ant-popover-inner-content {
+      padding: 16px;
+    }
+    .ant-popover-message {
+      padding: 0;
+    }
+    .ant-popover-message > .anticon {
+      position: relative;
+      top: 0;
+      &::after {
+        color: #333;
+        line-height: 14px;
+        content: " 提示";
+      }
+    }
+    .ant-popover-message-title {
+      margin-top: 12px;
+      padding-left: 0;
+    }
+    .ant-popover-buttons .ant-btn {
+      min-width: auto;
+      padding: 0;
+      background: 0 0;
+      border-color: transparent;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      & + .ant-btn {
+        margin-left: 16px;
+      }
+      &.ant-btn-text {
+        float: right;
+        color: #999;
+      }
+    }
+  }
+
+  // ant-card
+  .ant-card {
+    line-height: 20px;
+    box-shadow: 0 2px 8px 4px #e9eff3;
+    .ant-card-head {
+      padding: 0 20px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .ant-card-body {
+      padding: 16px 20px;
+    }
+  }
+
+  // pagination
+  // .pagination-no-margin {
+  //   .ant-pagination {
+  //     text-align: center;
+  //     .ant-pagination-options {
+  //       margin-left: 20px;
+  //     }
+  //     > li:not(.ant-pagination-total-text) {
+  //       margin-right: 0;
+  //       border-radius: 0;
+  //     }
+  //     .ant-pagination-jump-next {
+  //       border: 1px solid #d9d9d9;
+  //     }
+  //     li:not(.ant-pagination-item-active) {
+  //       border-right-color: #fff;
+  //     }
+  //     .ant-pagination-item:focus,
+  //     .ant-pagination-item:hover {
+  //       border-color: #1890ff !important;
+  //       transition: all 0.3s;
+  //     }
+  //   }
+  // }
+
+  .ant-pagination {
+    .ant-pagination-total-text {
+      margin-right: 12px;
+    }
+    .ant-pagination-options {
+      margin-left: 12px;
+      .ant-select-selector {
+        height: 28px;
+      }
+    }
+    .ant-pagination-options-quick-jumper {
+      min-width: 28px;
+      height: 28px;
+      line-height: 28px;
+      input {
+        height: 28px;
+        min-height: 28px;
+        margin: 0 4px;
+        padding: 2px 11px;
+        line-height: 28px;
+      }
+    }
+    .ant-select-single .ant-select-selector .ant-select-selection-item,
+    .ant-select-single .ant-select-selector .ant-select-selection-placeholder {
+      line-height: 26px;
+    }
+  }
+}
