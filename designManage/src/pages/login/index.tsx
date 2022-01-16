@@ -1,84 +1,202 @@
-import React, { FC, useEffect, useRef } from 'react'
-import { Form, Input, Button } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { connect, history } from 'umi'
-import { IConnectProps, IConnectState } from '@/models/connect'
-import LoginLogoImg from '@/assets/images/login_logo.png'
+/* eslint-disable no-unused-expressions */
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { Button, Form, Input, notification } from 'antd'
+import cookies from 'js-cookie'
+import React, { useEffect, useRef, useState } from 'react'
+import {
+  CUSTOM_INFO,
+  ENGINE_CHECK_ALIVE,
+  history,
+  OTP_CODE,
+  OTP_LOGIN,
+  TO_LOGIN,
+  useDispatch,
+  USER_INFO_RESET,
+  useSelector
+} from 'umi'
+
+import type { IConnectState } from '@/models/connect'
+
+// import Codebox from '@axetroy/react-codebox'
+import CodeInput from './components/CodeInput'
+import ForgetPwdModal from './components/ForgetPwdModal'
 import styles from './styles/index.less'
 
 const { Item } = Form
 
-const GET_VERIFICATION_CODE = 'login/getCode'
-const TO_LOGIN = 'login/login'
+const selector = ({ login, loading, custom }: IConnectState) => ({
+  login,
+  loading: loading.effects[TO_LOGIN],
+  custom
+})
 
-const Login: FC<IConnectProps> = props => {
-  const { login, dispatch, loading } = props
-  const { code } = login
+const Login = () => {
+  const { login, loading, custom } = useSelector(selector)
+  const { uuid, QRcode } = login
+  // const { keyword } = custom
   const nameInputRef = useRef<Input>(null)
+  const formRef = useRef<any>(null)
 
-  const getCode = () => {
+  const [showOtp, setShowOtp] = useState(false)
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   // 获取关键词
+  //   dispatch({ type: CUSTOM_INFO })
+  //   // 用户信息清空
+  //   dispatch({ type: USER_INFO_RESET })
+  // }, [dispatch])
+
+  // useEffect(() => {
+  //   if (keyword) document.title = keyword
+  // }, [keyword])
+
+  useEffect(() => {
+    if (!showOtp) {
+      nameInputRef.current!.focus()
+    }
+  }, [showOtp])
+
+  useEffect(() => {
+    if (cookies.get('token')) {
+      history.replace('/')
+    }
+  }, [])
+
+  const getOtpCode = (uid = uuid) => {
+    if (!uid) return
     dispatch({
-      type: GET_VERIFICATION_CODE
+      type: OTP_CODE,
+      payload: {
+        uuid: uid
+      },
+      callback: () => {
+        setShowOtp(true)
+      }
     })
   }
 
-  useEffect(() => {
-    getCode()
-    nameInputRef.current!.focus()
-  }, [])
+  const handleKeyDown = (e: any) => {
+    if (showOtp && e.keyCode === 13) formRef.current.submit()
+  }
 
   const onFinish = (values: any) => {
-    // dispatch({
-    //   type: TO_LOGIN,
-    //   payload: values,
-    //   callback: getCode
-    // })
-    if (values.user_name === 'grk' && values.password === '123456Qq') {
-      history.push(`/dashboard`)
+    if (showOtp) {
+      // OTP 登录
+      dispatch({
+        type: OTP_LOGIN,
+        payload: {
+          uuid,
+          ...values
+        },
+        callback: (res: string | boolean) => {
+          // 提示登录信息
+          if (res !== true) {
+            notification.warning({
+              message: '提示',
+              description: res
+            })
+          }
+          // admin 用户登录成功，调用引擎是否离线接口
+          dispatch({ type: ENGINE_CHECK_ALIVE })
+        }
+      })
+    } else {
+      // 账号密码登录
+      dispatch({
+        type: TO_LOGIN,
+        payload: values,
+        callback: (uid: string) => {
+          getOtpCode(uid)
+        }
+      })
     }
   }
 
   return (
-    <div className={styles.login_wrapper}>
-      <div className={styles.form_wrapper}>
-        <Form className={styles.form} onFinish={onFinish}>
-          <div className={styles.logo}>
-            <img src={LoginLogoImg} alt="logo" />
-          </div>
-          <Item name="user_name" rules={[{ required: true, message: '请输入用户名' }]}>
-            <Input ref={nameInputRef} prefix={<UserOutlined />} placeholder="用户名" />
-          </Item>
-          <Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
-            <Input prefix={<LockOutlined />} type="password" placeholder="密码" />
-          </Item>
-          {/* <Item
-            name="verification_code"
-            validateTrigger="onBlur"
-            rules={[{ required: true, len: 4, message: '请输入4位长度的验证码' }]}
-          >
-            <div className={styles.code_wrapper}>
-              <Input className={styles.code_input} placeholder="验证码" />
-              <img
-                src={code}
-                alt="验证码"
-                title="点击重新获取"
-                className={styles.code}
-                onClick={getCode}
-              />
-            </div>
-          </Item> */}
-          <Item>
-            <Button className={styles.submit} type="primary" htmlType="submit" loading={loading}>
-              登录
-            </Button>
-          </Item>
-        </Form>
+    <div className={styles.login_wrapper} onKeyDown={handleKeyDown}>
+      <div className={styles.bg_group}>
+        <div className={styles.form_wrapper}>
+          <Form ref={formRef} className={styles.form} onFinish={onFinish}>
+            {showOtp ? (
+              <>
+                {QRcode && (
+                  <div className={styles.otp_wrapper}>
+                    <img className={styles.qr_code} src={QRcode} alt="code" />
+                  </div>
+                )}
+                <span className={styles.opt_title}>请输入动态验证码</span>
+                <Item
+                  name="otp"
+                  className={styles.form_otp}
+                  rules={[
+                    { required: true, message: '请输入验证码' },
+                    {
+                      min: 6,
+                      message: '请输入完整的6位口令'
+                    }
+                  ]}
+                  validateTrigger="onBlur"
+                >
+                  <CodeInput />
+                </Item>
+                <Item>
+                  <Button className={styles.submit} type="primary" htmlType="submit">
+                    确定
+                  </Button>
+                </Item>
+              </>
+            ) : (
+              <>
+                {/* <div className={styles.logo}>
+                  <img src="/home/moresec/dsmp/LOGINLOGO.png" alt="logo" />
+                </div> */}
+                <Item name="username" rules={[{ required: true, message: '请输入用户名' }]}>
+                  <Input
+                    ref={nameInputRef}
+                    prefix={
+                      <UserOutlined style={{ color: '#999', fontSize: 14, marginRight: 8 }} />
+                    }
+                    placeholder="请输入用户名"
+                    spellCheck="false"
+                  />
+                </Item>
+                <Item noStyle>
+                  <Item
+                    name="password"
+                    required
+                    rules={[{ required: true, message: '请输入密码' }]}
+                  >
+                    <Input
+                      prefix={
+                        <LockOutlined style={{ color: '#999', fontSize: 14, marginRight: 8 }} />
+                      }
+                      type="password"
+                      placeholder="请输入密码"
+                    />
+                  </Item>
+
+                  <ForgetPwdModal>
+                    <a className={styles.forget_pwd}>忘记密码</a>
+                  </ForgetPwdModal>
+                </Item>
+                <Item className={styles.submit_item}>
+                  <Button
+                    className={styles.submit}
+                    type="primary"
+                    htmlType="submit"
+                    loading={loading}
+                  >
+                    登录
+                  </Button>
+                </Item>
+              </>
+            )}
+          </Form>
+        </div>
       </div>
     </div>
   )
 }
 
-export default connect(({ login, loading }: IConnectState) => ({
-  login,
-  loading: loading.effects[TO_LOGIN]
-}))(Login)
+export default Login

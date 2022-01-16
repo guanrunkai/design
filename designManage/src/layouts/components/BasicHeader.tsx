@@ -33,6 +33,7 @@ const BasicHeader: React.FC<IProps> = props => {
       content: '确认退出登录吗？',
       onOk: () => {
         //TODO
+        history.push('/login')
       }
     })
   }
