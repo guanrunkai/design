@@ -8,14 +8,6 @@ router.get('/', function(req, res, next) {
   res.send('123')
 });
 
-router.get('/test',function(req,res){
-mongoose.connect('mongodb://localhost/design',{useNewUrlParser: true, useUnifiedTopology: true})
-
-//封装集合 
-var Cat = mongoose.model('Cat',{name:String})
-var kitty = new Cat({name:'asd'})
-kitty.save().then(() => console.log('meow'));
-})
 
 module.exports = router;
 

@@ -5,13 +5,13 @@ import cookies from 'js-cookie'
 import React, { useEffect, useRef, useState } from 'react'
 import {
   CUSTOM_INFO,
-  ENGINE_CHECK_ALIVE,
+  
   history,
   OTP_CODE,
   OTP_LOGIN,
   TO_LOGIN,
   useDispatch,
-  USER_INFO_RESET,
+  
   useSelector
 } from 'umi'
 
@@ -57,24 +57,24 @@ const Login = () => {
     }
   }, [showOtp])
 
-  useEffect(() => {
-    if (cookies.get('token')) {
-      history.replace('/')
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (cookies.get('token')) {
+  //     history.replace('/')
+  //   }
+  // }, [])
 
-  const getOtpCode = (uid = uuid) => {
-    if (!uid) return
-    dispatch({
-      type: OTP_CODE,
-      payload: {
-        uuid: uid
-      },
-      callback: () => {
-        setShowOtp(true)
-      }
-    })
-  }
+  // const getOtpCode = (uid = uuid) => {
+  //   if (!uid) return
+  //   dispatch({
+  //     type: OTP_CODE,
+  //     payload: {
+  //       uuid: uid
+  //     },
+  //     callback: () => {
+  //       setShowOtp(true)
+  //     }
+  //   })
+  // }
 
   const handleKeyDown = (e: any) => {
     if (showOtp && e.keyCode === 13) formRef.current.submit()
@@ -97,17 +97,19 @@ const Login = () => {
               description: res
             })
           }
-          // admin 用户登录成功，调用引擎是否离线接口
-          dispatch({ type: ENGINE_CHECK_ALIVE })
+          // // admin 用户登录成功，调用引擎是否离线接口
+          // dispatch({ type: ENGINE_CHECK_ALIVE })
         }
       })
     } else {
       // 账号密码登录
+      
       dispatch({
         type: TO_LOGIN,
         payload: values,
-        callback: (uid: string) => {
-          getOtpCode(uid)
+        callback:  ()=> {
+
+          setShowOtp(true)
         }
       })
     }
@@ -120,11 +122,7 @@ const Login = () => {
           <Form ref={formRef} className={styles.form} onFinish={onFinish}>
             {showOtp ? (
               <>
-                {QRcode && (
-                  <div className={styles.otp_wrapper}>
-                    <img className={styles.qr_code} src={QRcode} alt="code" />
-                  </div>
-                )}
+                
                 <span className={styles.opt_title}>请输入动态验证码</span>
                 <Item
                   name="otp"
@@ -151,7 +149,7 @@ const Login = () => {
                 {/* <div className={styles.logo}>
                   <img src="/home/moresec/dsmp/LOGINLOGO.png" alt="logo" />
                 </div> */}
-                <Item name="username" rules={[{ required: true, message: '请输入用户名' }]}>
+                <Item name="userName" rules={[{ required: true, message: '请输入用户名' }]}>
                   <Input
                     ref={nameInputRef}
                     prefix={

@@ -8,7 +8,7 @@ export const __DEV__ = process.env.API_ENV !== 'test'
 export const MOCK_URL = 'http://192.168.180.58/mock/{projectId}/api'
 
 const SERVER_URL =
-  process.env.API_ENV === 'test' ? 'http://192.168.180.128' : 'http://192.168.180.127'
+  process.env.API_ENV === 'test' ? 'http://localhost:8000' : 'http://localhost:8000'
 
 export default {
   alias: {

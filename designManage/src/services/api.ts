@@ -5,7 +5,7 @@
 const apis = {
   // auth
   authCode: '/auth/verifycode',
-  authLogin: 'POST /login',
+  authLogin: 'POST /users/login',
   authLogout: 'POST /logout',
 
   // account
