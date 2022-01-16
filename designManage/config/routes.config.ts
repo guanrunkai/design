@@ -92,57 +92,57 @@ export const menuRoutesData: IRoute[] = [
       // }
     ]
   },
-  {
-    path: '/knowledge',
-    title: '安全知识库',
-    active: 'knowledge',
-    breadcrumb: '/knowledge',
-    accessKey: 'canViewKnownledge',
-    wrappers: ['../wrappers/auth'],
-    routes: [
-      {
-        path: '/knowledge',
-        redirect: '/knowledge/list',
-        noShowInMenu: true
-      },
-      {
-        path: '/knowledge/list',
-        title: '安全知识库',
-        active: 'knowledge',
-        component: './knowledge',
-        breadcrumb: '/knowledge',
-        accessKey: 'canViewKnownledge',
-        wrappers: ['../wrappers/auth']
-      },
-      {
-        path: '/knowledge/import',
-        title: '录入问题',
-        active: 'knowledge',
-        component: './knowledge/Import',
-        breadcrumb: '/import',
-        accessKey: 'canImportKnownledge',
-        wrappers: ['../wrappers/auth']
-      }
-    ]
-  },
-  {
-    path: '/report',
-    title: '报告管理',
-    active: 'report',
-    breadcrumb: '/report',
-    component: './report',
-    accessKey: 'canViewReport',
-    wrappers: ['../wrappers/auth']
-  },
-  {
-    path: '/audits',
-    title: '日志审计',
-    active: 'audits',
-    component: './audits',
-    breadcrumb: '/audits',
-    accessKey: 'canViewAudits',
-    wrappers: ['../wrappers/auth']
-  },
+  // {
+  //   path: '/knowledge',
+  //   title: '安全知识库',
+  //   active: 'knowledge',
+  //   breadcrumb: '/knowledge',
+  //   accessKey: 'canViewKnownledge',
+  //   wrappers: ['../wrappers/auth'],
+  //   routes: [
+  //     {
+  //       path: '/knowledge',
+  //       redirect: '/knowledge/list',
+  //       noShowInMenu: true
+  //     },
+  //     {
+  //       path: '/knowledge/list',
+  //       title: '安全知识库',
+  //       active: 'knowledge',
+  //       component: './knowledge',
+  //       breadcrumb: '/knowledge',
+  //       accessKey: 'canViewKnownledge',
+  //       wrappers: ['../wrappers/auth']
+  //     },
+  //     {
+  //       path: '/knowledge/import',
+  //       title: '录入问题',
+  //       active: 'knowledge',
+  //       component: './knowledge/Import',
+  //       breadcrumb: '/import',
+  //       accessKey: 'canImportKnownledge',
+  //       wrappers: ['../wrappers/auth']
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/report',
+  //   title: '报告管理',
+  //   active: 'report',
+  //   breadcrumb: '/report',
+  //   component: './report',
+  //   accessKey: 'canViewReport',
+  //   wrappers: ['../wrappers/auth']
+  // },
+  // {
+  //   path: '/audits',
+  //   title: '日志审计',
+  //   active: 'audits',
+  //   component: './audits',
+  //   breadcrumb: '/audits',
+  //   accessKey: 'canViewAudits',
+  //   wrappers: ['../wrappers/auth']
+  // },
   {
     path: '/config',
     title: '系统配置',
@@ -249,20 +249,20 @@ export const menuRoutesData: IRoute[] = [
     component: './help'
   },
 
-  {
-    path: '/notification',
-    title: '我的待办',
-    active: 'notification',
-    component: './notification',
-    breadcrumb: '/notification',
-    noShowInMenu: true
-  },
-  {
-    path: '/expire',
-    title: '过期',
-    component: './expire',
-    noShowInMenu: true
-  },
+  // {
+  //   path: '/notification',
+  //   title: '我的待办',
+  //   active: 'notification',
+  //   component: './notification',
+  //   breadcrumb: '/notification',
+  //   noShowInMenu: true
+  // },
+  // {
+  //   path: '/expire',
+  //   title: '过期',
+  //   component: './expire',
+  //   noShowInMenu: true
+  // },
   {
     path: '/500',
     title: '服务器内部错误',

@@ -9,8 +9,16 @@
   min-width: 1300px;
 
   &:global(.ant-layout-header) {
-    height: 64px;
-    line-height: 64px;
+    height: 72px;
+    line-height: 72px;
+  }
+
+  :global {
+    a.ant-modal {
+      .ant-modal-body {
+        padding: 24px 20px 20px 20px !important;
+      }
+    }
   }
 }
 
@@ -46,7 +54,7 @@
 .logo_wrapper {
   width: 160px;
   text-align: center;
-  margin-right: 20px;
+  margin-right: 50px;
 
   > img {
     padding-left: 20px;
@@ -73,7 +81,7 @@
   line-height: 20px;
   font-size: 16px;
   height: 20px;
-  margin-top: 23px;
+  margin-top: 26px;
 
   .notification_container {
     .notification {
@@ -90,7 +98,7 @@
         border-radius: 8px;
         background-color: #ff6d6d;
         padding: 0 5px;
-        margin: 0 5px;
+        margin-left: 5px;
         height: 17px;
         line-height: 17px;
         color: @ms-white;
@@ -114,6 +122,7 @@
 
   .logout {
     margin-left: 8px;
+    cursor: pointer;
   }
 }
 

@@ -230,11 +230,11 @@ export const VULN_STATUS_LIST = [
 export const MAP_STATUS_COLOR: Readonly<any> = {
   检查中: '#F15A24',
   修复中: '#00E31B',
-  复测中: '#0283FF',
-  已修复: '#ACACAC',
-  已忽略: '#ACACAC',
-  确认中: '#FFBE15',
-  已延期: '#D8D8D8'
+  复测中: '#20A0FF',
+  已修复: '#00CC88',
+  已忽略: '#CCCCCC',
+  确认中: '#ADDCFF',
+  已延期: '#DD3E3E'
 }
 
 export const MAP_STATUS_CHART: Readonly<any> = {
@@ -302,11 +302,11 @@ export const LEAK_RISKCODE_COLOR: Record<number, string> = {
 export const LEAK_STATUS_COLOR: Record<number, string> = {
   1: '#F15A24',
   2: '#00E31B',
-  3: '#0283FF',
-  4: '#ACACAC',
-  5: '#ACACAC',
-  6: '#FFBE15',
-  7: '#D8D8D8'
+  3: '#20A0FF',
+  4: '#00CC88',
+  5: '#CCCCCC',
+  6: '#ADDCFF',
+  7: '#DD3E3E'
 }
 
 // 手动录入列表录入状态
@@ -330,8 +330,9 @@ export const VULN_DETECTION_TYPE_LIST = [
   { label: 'SAST', value: 2, disabled: true },
   { label: 'IAST', value: 3 },
   { label: 'DAST', value: 4, disabled: true },
-  { label: 'checkmax.sast', value: 5, disabled: true },
+  { label: 'checkmax.sast', value: 5 },
   { label: 'tenable.sc', value: 6, disabled: true },
+  { label: '外部情报漏洞', value: 7 },
   { label: '手动录入', value: 99 }
 ]
 

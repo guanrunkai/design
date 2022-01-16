@@ -78,9 +78,9 @@ const hasAccessRole = (accessKey: string | string[] = '', access: any) => {
 }
 
 // 根据路由配置项，动态生成菜单
-const getMenusNode = (pathname: string, roleIds: number[], access: any) =>
+const getMenusNode = (pathname: string) =>
   menuRoutesData
-    .filter(x => !x.noShowInMenu && hasAccessRole(x.accessKey, access))
+    .filter(x => !x.noShowInMenu )
     .map(routeItem => {
       const { active, routes, title: t, path, subMenu = false } = routeItem
 
@@ -107,7 +107,7 @@ const getMenusNode = (pathname: string, roleIds: number[], access: any) =>
             {routes.map(
               (item: IRoute) =>
                 !item.noShowInMenu &&
-                hasAccessRole(item.accessKey, access) && (
+                (
                   <Item key={item.path}>
                     <Link to={item.path!} replace={window.location.pathname === item.path}>
                       {item.title}
@@ -131,8 +131,7 @@ const getMenusNode = (pathname: string, roleIds: number[], access: any) =>
 
 const HeaderMenu: React.FC<IProps> = props => {
   const { pathname } = props
-
-  const access = useAccess()
+ 
 
   const [currentMenu, setCurrentMenu] = useState<string[]>(getCurrentActiveMenuItemKey(pathname))
 
@@ -142,7 +141,7 @@ const HeaderMenu: React.FC<IProps> = props => {
 
   return (
     <Menu mode="horizontal" selectedKeys={currentMenu} className={styles.headerMenu}>
-      {getMenusNode(pathname, [], access)}
+      {getMenusNode(pathname)}
     </Menu>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Breadcrumb } from 'antd'
 import { Route } from 'antd/lib/breadcrumb/Breadcrumb'
 import { Link } from 'umi'
+import pathToRegexp from 'path-to-regexp'
 import { menuRoutesData, IRoute } from 'config/routes.config'
 import styles from '../styles/Breadcrumbs.less'
 
@@ -16,12 +17,25 @@ const itemRender = (route: Route, _params: any, routes: Route[], paths: string[]
 
 const Breadcrumbs = () => {
   // 排除特殊页面，不用显示面包屑
-  const hideBreadcrumbList = ['/page-that-hide-bc', '/page-that-hide-bc2']
-  const hideBc = hideBreadcrumbList.includes(location.pathname)
+  const hideBreadcrumbList = [
+    '/dashboard',
+    '/project/sca-detail/:projectId/comp/:id',
+    '/project/sca-task/:projectId/scan/:taskId',
+    '/project/sca-task/:projectId/add',
+    '/project/sca-detail/:projectId/liscense/:id',
+    '/config/baseline-security-req/detail/:id'
+  ]
+  let hideBc = false
+  for (const item of hideBreadcrumbList) {
+    if (location.pathname === item || pathToRegexp(item).test(location.pathname)) {
+      hideBc = true
+      break
+    }
+  }
   if (hideBc) return null
 
   const getBreadcrumb = (): Route[] => {
-    const currentBreadcrumb: Route[] = [{ path: '/', breadcrumbName: '首页' }]
+    const currentBreadcrumb: Route[] = []
     const breadcrumbs = location.pathname.split('/').filter(item => item !== '/' && !!item)
 
     const getItem = (index: number, routeData: IRoute[]) => {
@@ -44,7 +58,17 @@ const Breadcrumbs = () => {
   }
   const routes = getBreadcrumb()
 
-  return <Breadcrumb className={styles.breadcrumbs} itemRender={itemRender} routes={routes} />
+  return (
+    <div className={styles.breadcrumbsWrapper}>
+      <span>当前位置：</span>
+      <Breadcrumb
+        className={styles.breadcrumbs}
+        separator=">"
+        itemRender={itemRender}
+        routes={routes}
+      />
+    </div>
+  )
 }
 
 export default Breadcrumbs

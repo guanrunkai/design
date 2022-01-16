@@ -1,6 +1,6 @@
 .main_container_wrapper {
-  min-height: calc(100vh - 56px);
   margin-top: 56px;
+  min-height: calc(100vh - 56px);
 }
 
 .main_container {
@@ -8,8 +8,8 @@
 }
 
 .horizontal_layout {
+  background: #f2f2f2;
   min-height: 100vh;
-  background: #f0f2f5;
   :global {
     .ant-breadcrumb {
       padding: 0;
@@ -20,12 +20,24 @@
     }
   }
   .horizontal_content {
-    margin-top: 72px;
     padding: 0 20px;
+    margin-top: 72px;
     .horizontal_main {
-      min-height: 500px;
-      padding: 20px;
-      background-color: #fff;
+      // padding: 20px;
+      // background-color: #fff;
+      // min-height: 500px;
     }
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .errorTitle {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
   }
 }

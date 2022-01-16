@@ -1,13 +1,14 @@
+.breadcrumbsWrapper {
+  display: flex;
+  align-items: center;
+}
+
 .breadcrumbs {
   height: 40px;
-  padding: 0 20px;
   line-height: 40px;
+  padding: 0 20px;
   span {
-    color: #333;
-    transition: color 0.3s;
-    &:hover {
-      color: @ms-text-color;
-    }
+    color: rgba(0, 0, 0, 0.45);
   }
   :global {
     .ant-breadcrumb-separator {

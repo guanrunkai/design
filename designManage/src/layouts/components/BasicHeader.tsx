@@ -2,7 +2,7 @@ import Icon from '@ant-design/icons'
 import { Divider, Layout, Modal } from 'antd'
 import classnames from 'classnames'
 import React from 'react'
-import { history, Link, useDispatch } from 'umi'
+import { history, Link,  useDispatch } from 'umi'
 
 import { MSIcon } from '@/components'
 
@@ -22,16 +22,17 @@ const { confirm } = Modal
 
 const BasicHeader: React.FC<IProps> = props => {
   const dispatch = useDispatch()
-  const { collapsed, username, undoCount } = props
+  const { collapsed, username, undoCount=1000} = props
   const displayUsername =
     username.length <= 17 ? <div>{username}</div> : <div>{`${username.slice(0, 10)}...`}</div>
   const displayUndoCount = undoCount > 999 ? '999+' : undoCount
   const handleLogout = () => {
     confirm({
+      className: 'my-ant-modal',
       title: '提示',
       content: '确认退出登录吗？',
       onOk: () => {
-        history.push(`/login`)
+        //TODO
       }
     })
   }

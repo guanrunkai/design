@@ -81,6 +81,33 @@
       text-align: center;
       // min-width: 128px !important;
     }
+
+    .ant-menu-item {
+      text-align-last: left;
+      margin: 0;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+
+      a {
+        color: #666;
+
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    .ant-menu-item-selected {
+      color: #fff !important;
+      background: #71d3c6 !important;
+
+      a,
+      .ant-menu-item-selected a:hover {
+        color: #fff !important;
+      }
+    }
   }
 }
 
