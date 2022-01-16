@@ -1,33 +1,6 @@
 # react-admin
 
-> React 后台管理模板。技术栈：React@^16.13，umi@^3.x，antd@^4.x，ESLint等
-
-## Install
-
-```shell
-yarn add git+ssh://git@git.moresec.cn:front-end/ms-cli.git#{version} -g
-ms init [project name]
-```
-
-## Usage
-
-```shell
-// 1. install dependencies
-yarn
-
-// 2. start project
-yarn start
-```
-
-## Others Command
-
-```shell
-// lint check
-yarn lint
-
-// build and submit
-yarn submit
-```
+> React 后台管理模板。技术栈：React@^16.13，umi@^3.x，antd@^4.x，ESLint,node,mongodb 等
 
 ## Structure
 
