@@ -19,6 +19,7 @@
     "@moresec/hooks": "^0.4.0",
     "@moresec/react-components": "^1.6.0",
     "@moresec/utils": "^1.3.2",
+    "@types/js-cookie": "^3.0.1",
     "antd": "^4.16.6",
     "classnames": "^2.2.6",
     "dva": "^2.6.0-beta.20",
