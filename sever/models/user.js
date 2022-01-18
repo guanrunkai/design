@@ -2,7 +2,7 @@ var mongoose = require('../common/db')
 
 
 var user = new mongoose.Schema({
-  userName : String,
+  username : String,
   password : String 
 })
 
@@ -12,14 +12,14 @@ user.statics.findAll = ()=>{
 
 user.statics.admitLogin =function(req,cb){
  
-  const {userName,password} =req.body
+  const {username,password} =req.body
      
-  this.find({userName,password},cb)
+  this.find({username,password},cb)
 }
 
 user.statics.findByUserName = function (req,cb){
-  const {userName,password} =req.body
-  this.find({userName,password},cb)
+  const {username,password} =req.body
+  this.find({username,password},cb)
 }
 
 var userModel = mongoose.model('user',user)

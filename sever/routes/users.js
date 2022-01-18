@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var userModel = require('../models/user')
-var async = require('async')
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -35,9 +35,9 @@ router.post('/register',function(req,res){
 
       res.json({status:1,message:'用户已经注册'})
     }else {
-      const {userName,password} =req.body
+      const {username,password} =req.body
       var registerUser = new userModel({
-        userName,password
+        username,password
       })
       registerUser.save()
     }
