@@ -15,20 +15,20 @@ const getCurrentList = (data, condition) => {
         ? nowList.filter((item) => {
             if (
               condition.departmentId &&
-              condition.projectRisk == " " &&
-              condition.pattern == ""
+              (condition.projectRisk == " " || !condition.projectRisk) &&
+              (condition.pattern == "" || !condition.pattern)
             ) {
               return item.departmentName == condition.departmentId;
             } else if (
               condition.projectRisk &&
-              condition.departmentId == "" &&
-              condition.pattern == ""
+              (condition.departmentId == "" || !condition.departmentId) &&
+              (condition.pattern == "" || !condition.pattern)
             ) {
               return item.projectRisk == condition.projectRisk;
             } else if (
               condition.pattern &&
-              condition.departmentId == "" &&
-              condition.projectRisk == " "
+              (condition.departmentId == "" || !condition.departmentId) &&
+              (condition.projectRisk == " " || !condition.projectRisk)
             ) {
               return item.projectName.includes(condition.pattern);
             } else if (
@@ -100,6 +100,24 @@ router.get("/getAllDepartment", function (req, res) {
       code: 2000,
     });
   });
+});
+
+router.post("/addProject", function (req, res) {
+  var addProject = new projectModel({
+    list: [
+      {
+        projectName: req.body.projectName,
+        departmentName: req.body.departmentName,
+        pm: req.body.pm,
+        so: req.body.so,
+        vulnNumber: req.body.vulnNumber,
+        projectRisk: req.body.projectRisk,
+        riskGrading: req.body.riskGrading,
+      },
+    ],
+  });
+  addProject.save();
+  res.send({ code: 2000, message: "新建成功" });
 });
 
 module.exports = router;
