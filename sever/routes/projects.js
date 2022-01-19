@@ -10,15 +10,56 @@ const getCurrentList = (data, condition) => {
   var nowData = {
     list:
       (condition.projectRisk && condition.projectRisk !== " ") ||
-      (condition.departmentId && condition.departmentId !== "")
-        ? nowList.filter((item) =>
-            condition.departmentId
-              ? condition.projectRisk !== " "
-                ? item.projectRisk == condition.projectRisk &&
-                  item.departmentName == condition.departmentId
-                : item.departmentName == condition.departmentId
-              : item.projectRisk == condition.projectRisk
-          )
+      (condition.departmentId && condition.departmentId !== "") ||
+      (condition.pattern && condition.pattern !== "")
+        ? nowList.filter((item) => {
+            if (
+              condition.departmentId &&
+              condition.projectRisk == " " &&
+              condition.pattern == ""
+            ) {
+              return item.departmentName == condition.departmentId;
+            } else if (
+              condition.projectRisk &&
+              condition.departmentId == "" &&
+              condition.pattern == ""
+            ) {
+              return item.projectRisk == condition.projectRisk;
+            } else if (
+              condition.pattern &&
+              condition.departmentId == "" &&
+              condition.projectRisk == " "
+            ) {
+              return item.projectName.includes(condition.pattern);
+            } else if (
+              condition.departmentId &&
+              condition.projectRisk &&
+              (!condition.pattern || condition.pattern == "")
+            ) {
+              return (
+                item.projectRisk == condition.projectRisk &&
+                item.departmentName == condition.departmentId
+              );
+            } else if (
+              condition.departmentId &&
+              condition.pattern &&
+              (!condition.projectRisk || condition.projectRisk == " ")
+            ) {
+              return (
+                item.departmentName == condition.departmentId &&
+                item.projectName.includes(condition.pattern)
+              );
+            } else if (
+              condition.pattern &&
+              condition.projectRisk &&
+              (!condition.departmentId || condition.departmentId == "")
+            ) {
+              return (
+                item.projectName.includes(condition.pattern) &&
+                item.projectRisk == condition.projectRisk
+              );
+            }
+          })
         : condition.departmentId
         ? item.departmentName == condition.departmentId
         : nowList,
