@@ -16,7 +16,16 @@ var project = new mongoose.Schema({
 });
 
 project.statics.findAll = (req, cb) => {
-  console.log(req);
+  const page = req.body.page;
+  const limit = req.body.limit;
+
+  projectModel
+    .find({}, cb)
+    .skip((page - 1) * req.body.limit)
+    .limit(limit);
+};
+
+project.statics.findDepartment = (req, cb) => {
   projectModel.find({}, cb);
 };
 
@@ -28,10 +37,40 @@ var projectModel = mongoose.model("project", project);
 //       departmentName: "软件18-3",
 //       id: 2,
 //       pm: "关润开",
-//       riskGrading: "高危",
+//       riskGrading: "低危",
 //       so: "关润开",
 //       vulnNumber: 100,
 //       projectRisk: 3,
+//       projectName: "黑工程毕设",
+//     },
+//     {
+//       departmentName: "软件18-3",
+//       id: 3,
+//       pm: "关润开",
+//       riskGrading: "安全",
+//       so: "关润开",
+//       vulnNumber: 100,
+//       projectRisk: 4,
+//       projectName: "黑工程毕设",
+//     },
+//     {
+//       departmentName: "软件18-3",
+//       id: 4,
+//       pm: "关润开",
+//       riskGrading: "中危",
+//       so: "关润开",
+//       vulnNumber: 100,
+//       projectRisk: 2,
+//       projectName: "黑工程毕设",
+//     },
+//     {
+//       departmentName: "软件18-3",
+//       id: 5,
+//       pm: "关润开",
+//       riskGrading: "高危",
+//       so: "关润开",
+//       vulnNumber: 100,
+//       projectRisk: 1,
 //       projectName: "黑工程毕设",
 //     },
 //   ],
