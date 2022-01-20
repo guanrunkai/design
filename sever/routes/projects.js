@@ -3,6 +3,8 @@ var router = express.Router();
 
 var projectModel = require("../models/project");
 var detailModel = require("../models/projectDetail");
+var safeKnowledgeModel = require("../models/safeKnowledge");
+var auditModel = require("../models/audit");
 
 const getCurrentList = (data, condition) => {
   var nowList = [];
@@ -172,6 +174,29 @@ router.post("/projectEditSafe", function (req, res) {
 router.post("/projectEditRisk", function (req, res) {
   detailModel.editRisk(req, function (err, data) {
     res.send({ code: 2000, message: "成功修改" });
+  });
+});
+
+//安全知识库
+
+router.post("/safeKnowledge", function (req, res) {
+  safeKnowledgeModel.findAll(req, function (err, data) {
+    const nowData = req.body.condition.name
+      ? {
+          list: data.list.filter((item) =>
+            item.name.includes(req.body.condition.name)
+          ),
+        }
+      : data;
+    res.send({ data: nowData, code: 2000, message: "查询成功" });
+  });
+});
+
+//日志审计
+
+router.post("/auditPage", function (req, res) {
+  auditModel.findAll(req, function (err, data) {
+    res.send({ code: 2000, message: "查询成功", data: data });
   });
 });
 
