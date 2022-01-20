@@ -29,6 +29,15 @@ project.statics.findDepartment = (req, cb) => {
   projectModel.find({}, cb);
 };
 
+project.statics.deleteProject = function (req, cb) {
+  projectModel.updateOne(
+    {},
+    { $pull: { list: { _id: req.body._id } } },
+    { new: true },
+    cb
+  );
+};
+
 var projectModel = mongoose.model("project", project);
 
 // var cc = new projectModel({

@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 var projectModel = require("../models/project");
+var detailModel = require("../models/projectDetail");
 
 const getCurrentList = (data, condition) => {
   var nowList = [];
@@ -103,9 +104,11 @@ router.get("/getAllDepartment", function (req, res) {
 });
 
 router.post("/addProject", function (req, res) {
+  const randomNumberId = Math.floor(Math.random() * (500 - 1 + 1) + 1);
   var addProject = new projectModel({
     list: [
       {
+        id: randomNumberId,
         projectName: req.body.projectName,
         departmentName: req.body.departmentName,
         pm: req.body.pm,
@@ -117,7 +120,59 @@ router.post("/addProject", function (req, res) {
     ],
   });
   addProject.save();
+
+  var addDetail = new detailModel({
+    projectName: req.body.projectName,
+    departmentName: req.body.departmentName,
+    pm: req.body.pm,
+    so: req.body.so,
+    vulnNumber: req.body.vulnNumber,
+    projectRisk: req.body.projectRisk,
+    riskGrading: req.body.riskGrading,
+    id: randomNumberId,
+    riskGradingStr: req.body.riskGrading,
+    safetyFactory: Math.floor(Math.random() * (100 - 1 + 1) + 1),
+    vulnDelayNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 复测中漏洞数
+    vulnUnFixNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 修复中漏洞数
+    vulnFixedNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 已修复漏洞数
+    vulnCheckingNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 检查中漏洞数
+    vulnIgnoreNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 已忽略漏洞数
+    highRiskVulnNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 高危漏洞数
+    mediumRiskVulnNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 中危漏洞数
+    lowRiskVulnNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 低危漏洞数
+    warnRiskVulnNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 提示漏洞数,
+    createdTime: Date.now(),
+  });
+  addDetail.save();
   res.send({ code: 2000, message: "新建成功" });
+});
+
+router.post("/deleteProject", function (req, res) {
+  projectModel.deleteProject(req, function (err, data) {
+    res.send({ code: 2000, message: "删除成功" });
+  });
+});
+
+router.get("/getProjectDetail", function (req, res) {
+  detailModel.findAll(req.query.id, function (err, data) {
+    if (!req.query.id) {
+      res.send("缺少项目ID");
+    } else {
+      res.send({ code: 2000, message: "查找成功", data: data });
+    }
+  });
+});
+
+router.post("/projectEditSafe", function (req, res) {
+  detailModel.editSafe(req, function (err, data) {
+    res.send({ code: 2000, message: "成功修改" });
+  });
+});
+
+router.post("/projectEditRisk", function (req, res) {
+  detailModel.editRisk(req, function (err, data) {
+    res.send({ code: 2000, message: "成功修改" });
+  });
 });
 
 module.exports = router;
