@@ -9,6 +9,7 @@ var usersRouter = require("./routes/users");
 var chartRouter = require("./routes/chart");
 var projectRouter = require("./routes/projects");
 var leakRouter = require("./routes/leaks");
+var reportRouter = require("./routes/reports");
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/chart", chartRouter);
 app.use("/api/projects", projectRouter);
 app.use("/api/leaks", leakRouter);
+app.use("/api/reports", reportRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
