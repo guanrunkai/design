@@ -8,6 +8,8 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var chartRouter = require("./routes/chart");
 var projectRouter = require("./routes/projects");
+var leakRouter = require("./routes/leaks");
+
 var app = express();
 
 // view engine setup
@@ -38,11 +40,12 @@ app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/chart", chartRouter);
 app.use("/api/projects", projectRouter);
+app.use("/api/leaks", leakRouter);
 
 // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function (err, req, res, next) {

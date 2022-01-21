@@ -6,6 +6,8 @@ var detailModel = require("../models/projectDetail");
 var safeKnowledgeModel = require("../models/safeKnowledge");
 var auditModel = require("../models/audit");
 
+var handleCondition = require("../common/handleCondition");
+
 const getCurrentList = (data, condition) => {
   var nowList = [];
   data.map((item) => nowList.push(...item.list));
@@ -194,10 +196,28 @@ router.post("/safeKnowledge", function (req, res) {
 
 //日志审计
 
-router.post("/auditPage", function (req, res) {
-  auditModel.findAll(req, function (err, data) {
-    res.send({ code: 2000, message: "查询成功", data: data });
-  });
+router.post("/auditPage", async (req, res) => {
+  console.log(handleCondition(req.body.condition));
+  const key = [...Object.keys(req.body.condition)];
+  const value = [...Object.values(req.body.condition)];
+
+  if (value == "") {
+    await auditModel.findAll(req, function (err, data) {
+      res.send({ code: 2000, message: "查询成功", data: data });
+    });
+  } else {
+    let nowData = await auditModel.aggregate([
+      { $match: handleCondition(req.body.condition) },
+    ]);
+
+    var currentList = [];
+    nowData.map((item) => currentList.push(...item.list));
+    res.send({
+      code: 2000,
+      message: "查询成功",
+      data: { list: currentList, pageNo: 1, total: currentList.length },
+    });
+  }
 });
 
 module.exports = router;
