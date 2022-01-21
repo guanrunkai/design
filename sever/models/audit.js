@@ -19,18 +19,7 @@ var audit = new mongoose.Schema({
 });
 
 audit.statics.findAll = (req, cb) => {
-  // console.log(...Object.values(req.body.condition));
-  // auditModel.findOne({}, cb);
-  const key = [...Object.keys(req.body.condition)];
-  const value = [...Object.values(req.body.condition)];
-
-  const list = `'list.${key}':${value}`;
-  console.log(value == "");
-  if (value == "") {
-    auditModel.findOne({}, cb);
-  } else {
-    auditModel.aggregate([{ $unwind: "list" }, { $match: { list } }], cb);
-  }
+  auditModel.findOne({}, cb);
 };
 
 var auditModel = mongoose.model("audit", audit);
