@@ -125,6 +125,15 @@ router.post("/addProject", function (req, res) {
   });
   addProject.save();
 
+  function getDate() {
+    var date = new Date();
+    var year = date.getFullYear(); //  返回的是年份
+    var month = date.getMonth() + 1; //  返回的月份上个月的月份，记得+1才是当月
+    var dates = date.getDate(); //  返回的是几号
+
+    return `${year}-${month}-${dates}`;
+  }
+
   var addDetail = new detailModel({
     projectName: req.body.projectName,
     departmentName: req.body.departmentName,
@@ -145,7 +154,7 @@ router.post("/addProject", function (req, res) {
     mediumRiskVulnNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 中危漏洞数
     lowRiskVulnNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 低危漏洞数
     warnRiskVulnNum: Math.floor(Math.random() * (100 - 1 + 1) + 1), // 提示漏洞数,
-    createdTime: Date.now(),
+    createdTime: getDate(),
   });
   addDetail.save();
   res.send({ code: 2000, message: "新建成功" });

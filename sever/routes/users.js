@@ -1,47 +1,38 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var userModel = require('../models/user')
+var userModel = require("../models/user");
 
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post("/login", function (req, res) {
+  userModel.admitLogin(req, function (err, userSave) {
+    console.log(userSave);
+    if (userSave.length !== 0) {
+      res.json({ status: 1, message: "登录成功", data: userSave, code: 2000 });
+    } else {
+      res.json({ message: "用户名或密码错误" });
+    }
+  });
 });
 
-router.post('/login',function(req,res){
+router.post("/userInfo", async (req, res) => {
+  await userModel.findAll(req, function (err, data) {
+    res.send({ code: 2000, data: data });
+  });
+});
 
-  
-    userModel.admitLogin(req,function(err,userSave){
-        
-      if(userSave.length !==0){
-      res.json({status:1,message:'登录成功',data:userSave,code:2000})
-      }else {
-        
-        res.json({message:'用户名或密码错误'})
-      }
-      
-    })
-  }
-
-
-   
-)
-
-router.post('/register',function(req,res){
-
-  userModel.findByUserName(req,function(err,userSave){
+router.post("/register", function (req, res) {
+  userModel.findByUserName(req, function (err, userSave) {
     // console.log('asd',userSave);
-    if(userSave.length!==0){
-
-      res.json({status:1,message:'用户已经注册'})
-    }else {
-      const {username,password} =req.body
+    if (userSave.length !== 0) {
+      res.json({ status: 1, message: "用户已经注册" });
+    } else {
+      const { username, password } = req.body;
       var registerUser = new userModel({
-        username,password
-      })
-      registerUser.save()
+        username,
+        password,
+      });
+      registerUser.save();
     }
-  })
-})
+  });
+});
 
 module.exports = router;
